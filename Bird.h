@@ -10,6 +10,8 @@ class Bird
         SDL_Renderer* renderer;
         SDL_Texture *character;
         SDL_Rect rect;
+        SDL_Point point;
+        int radius;
         float x, y, yvel, yacc;
         Bird(SDL_Renderer* renderer);
         virtual ~Bird();
