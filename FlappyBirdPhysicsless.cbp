@@ -37,6 +37,8 @@
 		<Unit filename="Bird.h" />
 		<Unit filename="Tubo.cpp" />
 		<Unit filename="Tubo.h" />
+		<Unit filename="ground.cpp" />
+		<Unit filename="ground.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

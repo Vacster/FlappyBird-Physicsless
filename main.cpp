@@ -4,6 +4,7 @@
 #include<SDL/SDL_mixer.h>
 #include "Bird.h"
 #include "Tubo.h"
+#include "ground.h"
 #define TICK_INTERVAL 17
 #define FALLING_CONSTANT -11.5
 #define PRESSED true
@@ -68,6 +69,7 @@ int main( int argc, char* args[] )
 
     Bird* pollito = new Bird(renderer);
     Tubo* tubito = new Tubo(renderer);
+    ground* piso = new ground(renderer);
 
     state = SDL_GetKeyboardState(NULL);
     bool down = false;
@@ -99,8 +101,9 @@ int main( int argc, char* args[] )
                     }
 
                 }
-                pollito->logica();
                 tubito->logica();
+                piso->logica();
+                pollito->logica();
                 if(collision(tubito->rect, pollito->point, pollito->radius) || collision(tubito->rect2, pollito->point, pollito->radius))
                 {
                     screen = DEATH;
@@ -120,6 +123,8 @@ int main( int argc, char* args[] )
                 SDL_RenderCopy(renderer, pollito->character, NULL, &pollito->rect);
                 SDL_RenderCopy(renderer, tubito->tubodown, NULL, &tubito->rect);
                 SDL_RenderCopy(renderer, tubito->tuboup, NULL, &tubito->rect2);
+                SDL_RenderCopy(renderer, piso->piso, NULL, &piso->rect);
+                SDL_RenderCopy(renderer, piso->piso, NULL, &piso->rect2);
                 break;
 
             default:
