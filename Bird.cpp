@@ -7,10 +7,13 @@ Bird::Bird(SDL_Renderer* renderer)
     this->y = 250.0f;
     yvel = 3.0f;
     yacc = 0.5f;
-    radius = 31;
+    radius = 29;
+
+    subio = false;
 
     int w,h;
     character = IMG_LoadTexture(renderer,"pollo.png");
+    charactermuerto = IMG_LoadTexture(renderer, "pollomuerto.png");
     SDL_QueryTexture(character, NULL, NULL, &w, &h);
     rect.x = x;
     rect.y = y;
@@ -31,10 +34,29 @@ void Bird::logica()
     SDL_RenderCopy(renderer, character, NULL, &rect);
 }
 
-void Bird::muerte()
+void Bird::muerte(float startpos)
 {
-    character = IMG_LoadTexture(renderer, "pollomuerto.png");
-    yvel = 3.0f;
+    character = charactermuerto;
+
+    if(subio){
+        yvel -= yvel>3.0f?0.1f:0;
+        yvel += yacc;
+    }else{
+        if(rect.y <= startpos-150)
+        {
+            subio = true;
+        }else{
+            yvel = -8.0f;
+        }
+    }
+
+    if(rect.y <= 1280)
+    {
+        SDL_RenderCopy(renderer, character, NULL, &rect);
+    }
+
+    rect.y += yvel;
+
 }
 
 Bird::~Bird(){}

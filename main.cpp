@@ -1,34 +1,45 @@
 #include<SDL2/SDL.h>
 #include<SDL2/SDL_image.h>
 #include<iostream>
-#include<SDL/SDL_mixer.h>
+#include<list>
+#include <sstream>
+#include <string>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
+
 #include "Bird.h"
 #include "Tubo.h"
 #include "ground.h"
+#include "ObjetoMovible.h"
+#include "Background.h"
+
 #define TICK_INTERVAL 17
 #define FALLING_CONSTANT -11.5
-#define PRESSED true
-#define NOT_PRESSED false
 
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Event Event;
-SDL_Texture *background;
-SDL_Rect rect_background;
+int *counter;
+bool down = false;
 static Uint32 next_time;
 
+TTF_Font *font;
+SDL_Color textcolor;
+SDL_Surface* surfaceMessage;
+SDL_Texture* message;
+SDL_Rect message_rect;
+
 bool collision(SDL_Rect a, SDL_Point b, int radius);
-void restart(SDL_Rect *a, SDL_Rect *b, SDL_Rect *c);
+Uint32 time_left(void);
 
-Uint32 time_left(void)
+namespace patch
 {
-    Uint32 now;
-
-    now = SDL_GetTicks();
-    if(next_time <= now)
-        return 0;
-    else
-        return next_time - now;
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
 }
 
 int main( int argc, char* args[] )
@@ -57,29 +68,39 @@ int main( int argc, char* args[] )
         return 30;
     }
 
-    int w=0,h=0;
-    background = IMG_LoadTexture(renderer,"fondo.png");
-    SDL_QueryTexture(background, NULL, NULL, &w, &h);
-    rect_background.x = 0; rect_background.y = 0; rect_background.w = w; rect_background.h = h;
-
     //Que corra a la misma velocidad en diferentes computadoras
     const Uint8 *state = SDL_GetKeyboardState(NULL);
 
     next_time = SDL_GetTicks() + TICK_INTERVAL;
 
+    counter = new int(0);
+
+    std::list<ObjetoMovible*>objetos;
+
+    objetos.push_back(new Tubo(renderer, counter));
+    objetos.push_back(new ground(renderer));
+    Background* background = new Background(renderer);
     Bird* pollito = new Bird(renderer);
-    Tubo* tubito = new Tubo(renderer);
-    ground* piso = new ground(renderer);
+
+
+    TTF_Init();
+    font = TTF_OpenFont("text.ttf", 200);
+    textcolor = {255,255,255};
+    surfaceMessage = TTF_RenderText_Solid(font, patch::to_string(counter).c_str(), textcolor);
+    message = SDL_CreateTextureFromSurface( renderer, surfaceMessage );
+    message_rect.x = 590;
+    message_rect.y = 5;
+    message_rect.w = 100;
+    message_rect.h = 100;
+    float pollitomurioen;
 
     state = SDL_GetKeyboardState(NULL);
-    bool down = false;
 
     Screen screen = RUN;//TODO: cambiar a MAIN
 
     //Main Loop
     while(true)
     {
-        SDL_RenderCopy(renderer, background, NULL, &rect_background);
         switch(screen){
             case RUN:
 
@@ -92,23 +113,34 @@ int main( int argc, char* args[] )
                     }
                     if(state[SDL_SCANCODE_SPACE] && !down)
                     {
-                        down = PRESSED;
+                        down = true;
                         pollito->yvel = FALLING_CONSTANT;
                     }
                     if(!state[SDL_SCANCODE_SPACE] && down)
                     {
-                        down = NOT_PRESSED;
+                        down = false;
                     }
 
                 }
-                tubito->logica();
-                piso->logica();
-                pollito->logica();
-                if(collision(tubito->rect, pollito->point, pollito->radius) || collision(tubito->rect2, pollito->point, pollito->radius))
+
+                surfaceMessage = TTF_RenderText_Solid(font, patch::to_string(*counter).c_str(), textcolor);
+                message = SDL_CreateTextureFromSurface( renderer, surfaceMessage );
+
+                background->logica();
+                for(std::list<ObjetoMovible*>::iterator e = objetos.begin(); e!=objetos.end(); e++)
                 {
-                    screen = DEATH;
-                    pollito->muerte();
+                    (*e)->logica();
+                    if(collision((*e)->rect, pollito->point, pollito->radius) || collision((*e)->rect2, pollito->point, pollito->radius))
+                    {
+                        screen = DEATH;
+                        pollitomurioen = (float)pollito->rect.y;
+                        pollito->muerte(pollitomurioen);
+                    }
                 }
+
+                SDL_RenderCopy(renderer, message, NULL, &message_rect);
+                pollito->logica();
+
                 break;
 
             case MAIN:
@@ -120,31 +152,28 @@ int main( int argc, char* args[] )
                 break;
 
             case DEATH:
-                SDL_RenderCopy(renderer, pollito->character, NULL, &pollito->rect);
-                SDL_RenderCopy(renderer, tubito->tubodown, NULL, &tubito->rect);
-                SDL_RenderCopy(renderer, tubito->tuboup, NULL, &tubito->rect2);
-                SDL_RenderCopy(renderer, piso->piso, NULL, &piso->rect);
-                SDL_RenderCopy(renderer, piso->piso, NULL, &piso->rect2);
+                SDL_RenderCopy(renderer, background->texture, NULL, &background->rect);
+                SDL_RenderCopy(renderer, background->texture2, NULL, &background->rect2);
+                for(std::list<ObjetoMovible*>::iterator e = objetos.begin(); e!=objetos.end(); e++)
+                {
+                    SDL_RenderCopy(renderer, (*e)->texture2, NULL, &(*e)->rect);
+                    SDL_RenderCopy(renderer, (*e)->texture, NULL, &(*e)->rect2);
+                }
+                SDL_RenderCopy(renderer, message, NULL, &message_rect);
+                pollito->muerte(pollitomurioen);
+
                 break;
 
             default:
                 break;
         }
+
         SDL_RenderPresent(renderer);
         SDL_Delay(time_left());
         next_time += TICK_INTERVAL;
     }
 
 	return 0;
-}
-
-void restart(SDL_Rect *a, SDL_Rect *b, SDL_Rect *c)
-{
-    a->y = 250.0f;
-    b->y = -300;
-    b->x = 1280;
-    c->y = 500;
-    c->x = 1280;
 }
 
 bool collision(SDL_Rect rect, SDL_Point circle, int radius)
@@ -166,3 +195,16 @@ bool collision(SDL_Rect rect, SDL_Point circle, int radius)
 
     return (cornerDistance_sq <= (radius^2));
 }
+
+
+Uint32 time_left(void)
+{
+    Uint32 now;
+
+    now = SDL_GetTicks();
+    if(next_time <= now)
+        return 0;
+    else
+        return next_time - now;
+}
+

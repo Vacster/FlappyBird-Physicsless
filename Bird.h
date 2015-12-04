@@ -8,15 +8,16 @@ class Bird
 {
     public:
         SDL_Renderer* renderer;
-        SDL_Texture *character;
+        SDL_Texture *character, *charactermuerto;
         SDL_Rect rect;
         SDL_Point point;
+        bool subio;
         int radius;
         float x, y, yvel, yacc;
         Bird(SDL_Renderer* renderer);
         virtual ~Bird();
         void logica();
-        void muerte();
+        void muerte(float startpos);
     protected:
     private:
 };

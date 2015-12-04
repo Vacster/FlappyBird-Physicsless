@@ -1,18 +1,18 @@
-#include "ground.h"
+#include "Background.h"
 
-ground::ground(SDL_Renderer* renderer)
+Background::Background(SDL_Renderer* renderer)
 {
     this->renderer = renderer;
 
     int w, h;
-    texture = IMG_LoadTexture(renderer,"ground.png");
+    texture = IMG_LoadTexture(renderer,"fondo.png");
     texture2 = texture;
     SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 
     rect.x = 0;
-    rect.y = 690;
+    rect.y = 0;
     rect.w = w;
-    rect.h = 30;
+    rect.h = h;
 
     rect2.x = 1280;
     rect2.y = rect.y;
@@ -20,7 +20,7 @@ ground::ground(SDL_Renderer* renderer)
     rect2.h = rect.h;
 }
 
-void ground::logica()
+void Background::logica()
 {
     rect.x -= xvel;
     rect2.x -= xvel;
@@ -38,7 +38,7 @@ void ground::logica()
     SDL_RenderCopy(renderer, texture, NULL, &rect2);
 }
 
-ground::~ground()
+Background::~Background()
 {
     //dtor
 }
