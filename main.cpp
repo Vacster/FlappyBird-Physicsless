@@ -92,6 +92,15 @@ int main( int argc, char* args[] )
     message_rect.y = 5;
     message_rect.w = 100;
     message_rect.h = 100;
+
+    SDL_Rect flash;
+    flash.h = 720;
+    flash.w = 1280;
+    flash.x = 0;
+    flash.y = 0;
+
+    SDL_Texture *flash_Texture = IMG_LoadTexture(renderer,"flash.png");
+
     float pollitomurioen;
 
     state = SDL_GetKeyboardState(NULL);
@@ -129,13 +138,19 @@ int main( int argc, char* args[] )
                 background->logica();
                 for(std::list<ObjetoMovible*>::iterator e = objetos.begin(); e!=objetos.end(); e++)
                 {
-                    (*e)->logica();
                     if(collision((*e)->rect, pollito->point, pollito->radius) || collision((*e)->rect2, pollito->point, pollito->radius))
                     {
+                        Uint32 now = SDL_GetTicks();
+                        while(SDL_GetTicks() < now+60)
+                        {
+                            SDL_RenderCopy(renderer, flash_Texture, NULL, &flash);
+                            SDL_RenderPresent(renderer);
+                        }
                         screen = DEATH;
                         pollitomurioen = (float)pollito->rect.y;
                         pollito->muerte(pollitomurioen);
                     }
+                    (*e)->logica();
                 }
 
                 SDL_RenderCopy(renderer, message, NULL, &message_rect);
