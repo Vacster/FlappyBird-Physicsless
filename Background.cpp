@@ -14,7 +14,7 @@ Background::Background(SDL_Renderer* renderer)
     rect.w = w;
     rect.h = h;
 
-    rect2.x = 1280;
+    rect2.x = 1360;
     rect2.y = rect.y;
     rect2.w = rect.w;
     rect2.h = rect.h;
@@ -27,11 +27,11 @@ void Background::logica()
 
     if(rect.x <= -rect.w)
     {
-        rect.x = 1280;
+        rect.x = 1360;
     }
     if(rect2.x <= -rect2.w)
     {
-        rect2.x = 1280;
+        rect2.x = 1360;
     }
 
     SDL_RenderCopy(renderer, texture, NULL, &rect);

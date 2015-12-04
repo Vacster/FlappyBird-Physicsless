@@ -19,7 +19,8 @@
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Event Event;
-int *counter;
+int *counter, *mouse_x, *mouse_y;
+float pollitomurioen;
 bool down = false;
 static Uint32 next_time;
 
@@ -29,8 +30,16 @@ SDL_Surface* surfaceMessage;
 SDL_Texture* message;
 SDL_Rect message_rect;
 
+enum Screen {MAIN, PAUSE, DEATH, RUN};
+Screen screen;
+
+std::list<ObjetoMovible*>objetos;
+Bird* pollito;
+Background* background;
+
 bool collision(SDL_Rect a, SDL_Point b, int radius);
 Uint32 time_left(void);
+void restart();
 
 namespace patch
 {
@@ -45,7 +54,6 @@ namespace patch
 int main( int argc, char* args[] )
 {
 
-    enum Screen {MAIN, PAUSE, DEATH, RUN};
 
     //Init SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
@@ -53,7 +61,7 @@ int main( int argc, char* args[] )
         return 10;
     }
     //Creates a SDL Window
-    if((window = SDL_CreateWindow("Survival Game", 100, 100, 1280/*WIDTH*/, 720/*HEIGHT*/, SDL_WINDOW_RESIZABLE | SDL_RENDERER_PRESENTVSYNC)) == NULL)
+    if((window = SDL_CreateWindow("Survival Game", 100, 100, 1360/*WIDTH*/, 720/*HEIGHT*/, SDL_WINDOW_RESIZABLE | SDL_RENDERER_PRESENTVSYNC)) == NULL)
     {
         return 20;
     }
@@ -75,12 +83,11 @@ int main( int argc, char* args[] )
 
     counter = new int(0);
 
-    std::list<ObjetoMovible*>objetos;
 
     objetos.push_back(new Tubo(renderer, counter));
     objetos.push_back(new ground(renderer));
-    Background* background = new Background(renderer);
-    Bird* pollito = new Bird(renderer);
+    background = new Background(renderer);
+    pollito = new Bird(renderer);
 
 
     TTF_Init();
@@ -95,17 +102,19 @@ int main( int argc, char* args[] )
 
     SDL_Rect flash;
     flash.h = 720;
-    flash.w = 1280;
+    flash.w = 1360;
     flash.x = 0;
     flash.y = 0;
 
+    mouse_x = new int(0);
+    mouse_y = new int(0);
+
     SDL_Texture *flash_Texture = IMG_LoadTexture(renderer,"flash.png");
 
-    float pollitomurioen;
 
     state = SDL_GetKeyboardState(NULL);
 
-    Screen screen = RUN;//TODO: cambiar a MAIN
+    screen = RUN;//TODO: cambiar a MAIN
 
     //Main Loop
     while(true)
@@ -119,6 +128,7 @@ int main( int argc, char* args[] )
                         case SDL_QUIT:
                             return 0;
                             break;
+
                     }
                     if(state[SDL_SCANCODE_SPACE] && !down)
                     {
@@ -146,9 +156,9 @@ int main( int argc, char* args[] )
                             SDL_RenderCopy(renderer, flash_Texture, NULL, &flash);
                             SDL_RenderPresent(renderer);
                         }
-                        screen = DEATH;
-                        pollitomurioen = (float)pollito->rect.y;
+                        pollitomurioen = (float) pollito->rect.y;
                         pollito->muerte(pollitomurioen);
+                        screen = DEATH;
                     }
                     (*e)->logica();
                 }
@@ -167,6 +177,32 @@ int main( int argc, char* args[] )
                 break;
 
             case DEATH:
+                while(SDL_PollEvent(&Event))
+                {
+                    switch(Event.type){
+                        case SDL_QUIT:
+                            return 0;
+                            break;
+
+
+                        case SDL_MOUSEBUTTONDOWN:
+                            SDL_GetMouseState(mouse_x, mouse_y);
+                            if(*mouse_x <= 835 && *mouse_x >= 535 && pollito->rect_menu.y <= 110.0f)
+                            {
+                                if(*mouse_y <= 390 && *mouse_y >= 290)
+                                {
+                                    std::cout<<"Hizo Click en Restart"<<std::endl;
+                                    restart();
+                                }
+                                else if(*mouse_y <= 545 && *mouse_y >= 440)
+                                {
+                                    std::cout<<"Hizo Click en Exit"<<std::endl;
+                                    return 0; //TODO  Ir al main
+                                }
+                            }
+                            break;
+                    }
+                }
                 SDL_RenderCopy(renderer, background->texture, NULL, &background->rect);
                 SDL_RenderCopy(renderer, background->texture2, NULL, &background->rect2);
                 for(std::list<ObjetoMovible*>::iterator e = objetos.begin(); e!=objetos.end(); e++)
@@ -221,5 +257,17 @@ Uint32 time_left(void)
         return 0;
     else
         return next_time - now;
+}
+
+void restart()
+{
+    objetos.clear();
+    objetos.push_back(new Tubo(renderer, counter));
+    objetos.push_back(new ground(renderer));
+    background = new Background(renderer);
+    pollito = new Bird(renderer);
+    *counter = 0;
+    pollitomurioen = 0;
+    screen = RUN;
 }
 

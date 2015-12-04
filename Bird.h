@@ -7,6 +7,10 @@
 class Bird
 {
     public:
+        /*Prueba*/
+        SDL_Rect rect_menu;
+        SDL_Texture *death_menu;
+        /*Prueba*/
         SDL_Renderer* renderer;
         SDL_Texture *character, *charactermuerto;
         SDL_Rect rect;

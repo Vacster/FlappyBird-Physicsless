@@ -5,7 +5,7 @@ int min = 100, max = 450;
 Tubo::Tubo(SDL_Renderer* renderer, int* counter)
 {
     this->renderer = renderer;
-    x = 1280;
+    x = 1360;
     gap = 720;
     this->counter = counter;
 
@@ -14,7 +14,7 @@ Tubo::Tubo(SDL_Renderer* renderer, int* counter)
     texture2 = IMG_LoadTexture(renderer, "tubo2.png");
     SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 
-    rect.x = -50; //lmao
+    rect.x = -100; //lmao
     rect.w = w;
     rect.h = h;
     rect2.w = w;
