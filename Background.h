@@ -7,7 +7,7 @@ class Background : public ObjetoMovible
 {
     public:
         void logica();
-        Background(SDL_Renderer* renderer);
+        Background(SDL_Renderer* renderer, RegularTexture *texture);
         virtual ~Background();
     protected:
     private:

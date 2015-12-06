@@ -38,6 +38,8 @@
 		<Unit filename="Bird.cpp" />
 		<Unit filename="Bird.h" />
 		<Unit filename="ObjetoMovible.h" />
+		<Unit filename="RegularTexture.cpp" />
+		<Unit filename="RegularTexture.h" />
 		<Unit filename="Tubo.cpp" />
 		<Unit filename="Tubo.h" />
 		<Unit filename="ground.cpp" />

@@ -1,23 +1,15 @@
 #include "Background.h"
 
-Background::Background(SDL_Renderer* renderer)
+Background::Background(SDL_Renderer *renderer, RegularTexture *texture)
 {
     this->renderer = renderer;
+    tipo = "Background";
 
-    int w, h;
-    texture = IMG_LoadTexture(renderer,"fondo.png");
-    texture2 = texture;
-    SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+    this->texture = texture->background;
+    texture2 = this->texture;
 
-    rect.x = 0;
-    rect.y = 0;
-    rect.w = w;
-    rect.h = h;
-
-    rect2.x = 1360;
-    rect2.y = rect.y;
-    rect2.w = rect.w;
-    rect2.h = rect.h;
+    rect = {0, 0, 1360, 720};
+    rect2 = {1360, 0, 1360, 720};
 }
 
 void Background::logica()
@@ -26,13 +18,9 @@ void Background::logica()
     rect2.x -= xvel;
 
     if(rect.x <= -rect.w)
-    {
         rect.x = 1360;
-    }
     if(rect2.x <= -rect2.w)
-    {
         rect2.x = 1360;
-    }
 
     SDL_RenderCopy(renderer, texture, NULL, &rect);
     SDL_RenderCopy(renderer, texture, NULL, &rect2);

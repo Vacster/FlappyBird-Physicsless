@@ -2,12 +2,11 @@
 #define GROUND_H
 #include "ObjetoMovible.h"
 
-
 class ground : public ObjetoMovible
 {
     public:
         void logica();
-        ground(SDL_Renderer* renderer);
+        ground(SDL_Renderer* renderer, RegularTexture *texture);
         virtual ~ground();
     protected:
     private:

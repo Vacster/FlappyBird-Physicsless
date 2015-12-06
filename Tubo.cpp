@@ -2,23 +2,20 @@
 
 int min = 100, max = 450;
 
-Tubo::Tubo(SDL_Renderer* renderer, int* counter)
+Tubo::Tubo(SDL_Renderer *renderer, RegularTexture *texture,int *counter)
 {
     this->renderer = renderer;
-    x = 1360;
-    gap = 720;
     this->counter = counter;
+    tipo = "Tubo";
 
     int w, h;
-    texture = IMG_LoadTexture(renderer,"tubo.png");
-    texture2 = IMG_LoadTexture(renderer, "tubo2.png");
-    SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+    this->texture = texture->pipe;
+    this->texture2 = texture->pipe2;
+    SDL_QueryTexture(this->texture, NULL, NULL, &w, &h);
 
-    rect.x = -100; //lmao
-    rect.w = w;
-    rect.h = h;
-    rect2.w = w;
-    rect2.h = h;
+    gap = 680;
+    rect = {-100, 0, w, h};
+    rect2 = {-100, 0, w, h};
 
     paso = true;
 }
@@ -32,8 +29,8 @@ void Tubo::logica()
     {
         srand(time(NULL));
         paso = false;
-        rect.x = x;
-        rect2.x = x;
+        rect.x = 1360;
+        rect2.x = 1360;
         rect.y = -(min + (rand() % (int)(max - min + 1)));
         rect2.y = rect.y + gap;
     }

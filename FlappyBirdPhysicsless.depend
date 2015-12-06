@@ -1,49 +1,69 @@
 # depslib dependency file v1.0
-1449241874 source:/home/kamil/Desktop/FlappyBirdPhysicsless/main.cpp
+1449383282 source:/home/kamil/Desktop/FlappyBirdPhysicsless/main.cpp
 	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<iostream>
-	<list>
-	<sstream>
-	<string>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_image.h>
+	<SDL2/SDL_image.h>
+	<string>
+	<list>
+	<iostream>
+	<sstream>
+	<stdio.h>
 	"Bird.h"
 	"Tubo.h"
 	"ground.h"
-	"ObjetoMovible.h"
 	"Background.h"
+	"ObjetoMovible.h"
+	"CustomTexture.h"
+	"RegularTexture.h"
 
-1449241830 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Bird.cpp
+1449371051 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Bird.cpp
 	"Bird.h"
 
-1449239560 /home/kamil/Desktop/FlappyBirdPhysicsless/Bird.h
+1449371063 /home/kamil/Desktop/FlappyBirdPhysicsless/Bird.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
+	"RegularTexture.h"
 
-1449241435 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.cpp
+1449372307 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.cpp
 	"Tubo.h"
 
-1449079905 /home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.h
-	"ObjetoMovible.h"
+1449372113 /home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.h
 	<time.h>
+	"ObjetoMovible.h"
 
-1449237673 source:/home/kamil/Desktop/FlappyBirdPhysicsless/ground.cpp
+1449372268 source:/home/kamil/Desktop/FlappyBirdPhysicsless/ground.cpp
 	"ground.h"
 
-1448992641 /home/kamil/Desktop/FlappyBirdPhysicsless/ground.h
+1449372118 /home/kamil/Desktop/FlappyBirdPhysicsless/ground.h
 	"ObjetoMovible.h"
 
 1448908220 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Fondo.cpp
 	"ground.h"
 
-1448993631 /home/kamil/Desktop/FlappyBirdPhysicsless/ObjetoMovible.h
+1449372101 /home/kamil/Desktop/FlappyBirdPhysicsless/ObjetoMovible.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
+	<iostream>
+	"RegularTexture.h"
 
-1449237673 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Background.cpp
+1449372259 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Background.cpp
 	"Background.h"
 
-1448993961 /home/kamil/Desktop/FlappyBirdPhysicsless/Background.h
+1449372087 /home/kamil/Desktop/FlappyBirdPhysicsless/Background.h
 	"ObjetoMovible.h"
+
+1449383323 source:/home/kamil/Desktop/FlappyBirdPhysicsless/RegularTexture.cpp
+	"RegularTexture.h"
+
+1449383308 /home/kamil/Desktop/FlappyBirdPhysicsless/RegularTexture.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<list>
+	<string>
+
+1449370877 /home/kamil/Desktop/FlappyBirdPhysicsless/CustomTexture.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<stdio.h>
 
