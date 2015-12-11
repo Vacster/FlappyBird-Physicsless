@@ -1,47 +1,50 @@
 # depslib dependency file v1.0
-1449383282 source:/home/kamil/Desktop/FlappyBirdPhysicsless/main.cpp
+1449847599 source:/home/kamil/Desktop/FlappyBirdPhysicsless/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_image.h>
-	<SDL2/SDL_image.h>
-	<string>
+	<SDL2/SDL_mixer.h>
 	<list>
-	<iostream>
+	<string>
 	<sstream>
 	<stdio.h>
+	<fstream>
+	<iostream>
 	"Bird.h"
 	"Tubo.h"
 	"ground.h"
+	"Flower.h"
+	"Fireworks.h"
 	"Background.h"
 	"ObjetoMovible.h"
 	"CustomTexture.h"
 	"RegularTexture.h"
 
-1449371051 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Bird.cpp
+1449847840 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Bird.cpp
 	"Bird.h"
 
-1449371063 /home/kamil/Desktop/FlappyBirdPhysicsless/Bird.h
+1449847671 /home/kamil/Desktop/FlappyBirdPhysicsless/Bird.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	"RegularTexture.h"
 
-1449372307 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.cpp
+1449712151 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.cpp
 	"Tubo.h"
 
 1449372113 /home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.h
 	<time.h>
 	"ObjetoMovible.h"
 
-1449372268 source:/home/kamil/Desktop/FlappyBirdPhysicsless/ground.cpp
+1449795017 source:/home/kamil/Desktop/FlappyBirdPhysicsless/ground.cpp
 	"ground.h"
 
-1449372118 /home/kamil/Desktop/FlappyBirdPhysicsless/ground.h
+1449847761 /home/kamil/Desktop/FlappyBirdPhysicsless/ground.h
 	"ObjetoMovible.h"
 
 1448908220 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Fondo.cpp
 	"ground.h"
 
-1449372101 /home/kamil/Desktop/FlappyBirdPhysicsless/ObjetoMovible.h
+1449847809 /home/kamil/Desktop/FlappyBirdPhysicsless/ObjetoMovible.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<iostream>
@@ -53,10 +56,10 @@
 1449372087 /home/kamil/Desktop/FlappyBirdPhysicsless/Background.h
 	"ObjetoMovible.h"
 
-1449383323 source:/home/kamil/Desktop/FlappyBirdPhysicsless/RegularTexture.cpp
+1449847708 source:/home/kamil/Desktop/FlappyBirdPhysicsless/RegularTexture.cpp
 	"RegularTexture.h"
 
-1449383308 /home/kamil/Desktop/FlappyBirdPhysicsless/RegularTexture.h
+1449847777 /home/kamil/Desktop/FlappyBirdPhysicsless/RegularTexture.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<list>
@@ -66,4 +69,20 @@
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<stdio.h>
+
+1449599294 /home/kamil/Desktop/FlappyBirdPhysicsless/include/Fireworks.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<string>
+	<iostream>
+	<sstream>
+
+1449769094 source:/home/kamil/Desktop/FlappyBirdPhysicsless/src/Fireworks.cpp
+	"Fireworks.h"
+
+1449846496 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Flower.cpp
+	"Flower.h"
+
+1449847826 /home/kamil/Desktop/FlappyBirdPhysicsless/Flower.h
+	"ObjetoMovible.h"
 

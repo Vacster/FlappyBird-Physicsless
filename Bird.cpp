@@ -7,20 +7,20 @@ Bird::Bird(SDL_Renderer* renderer, RegularTexture *texture)
 
     yvel = 3.0f;
     yacc = 0.5f;
-    radius = 31;
+    radius = 33;
 
     subio = false;
 
     int w,h;
     character = texture->chicken;
-    charactermuerto = texture->deadchicken;
     death_menu = texture->deathmenu;
+    charactermuerto = texture->deadchicken;
     SDL_QueryTexture(character, NULL, NULL, &w, &h);
 
     rect = {220, 250, w, h};
     rect_menu = {360, 720, 600, 500};
 
-    point.x = rect.x + radius;
+    point.x = rect.x + radius + 5;
     point.y = rect.y + radius;
 }
 

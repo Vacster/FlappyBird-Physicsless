@@ -6,10 +6,8 @@ class ground : public ObjetoMovible
 {
     public:
         void logica();
-        ground(SDL_Renderer* renderer, RegularTexture *texture);
         virtual ~ground();
-    protected:
-    private:
+        ground(SDL_Renderer* renderer, RegularTexture *texture);
 };
 
 #endif // GROUND_H

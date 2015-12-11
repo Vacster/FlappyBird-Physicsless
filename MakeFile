@@ -1,0 +1,2 @@
+all:
+	g++ main.cpp ground.cpp RegularTexture.cpp Tubo.cpp Bird.cpp Background.cpp -o Flappy -lSDL2 -lSDL2_image -lSDL2_ttf

@@ -1,6 +1,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
 #include "RegularTexture.h"
+
 #ifndef BIRD_H
 #define BIRD_H
 
@@ -8,17 +10,21 @@
 class Bird
 {
     public:
-        SDL_Renderer* renderer;
-        SDL_Texture *character, *charactermuerto, *death_menu;
-        SDL_Rect rect, rect_menu;
+
         SDL_Point point;
-        bool subio;
+        SDL_Renderer* renderer;
+        SDL_Rect rect, rect_menu;
+        SDL_Texture *character, *charactermuerto, *death_menu;
+
         int radius;
+        bool subio;
         float yvel, yacc;
-        Bird(SDL_Renderer* renderer, RegularTexture *texture);
-        virtual ~Bird();
+
         void logica();
+        virtual ~Bird();
         void muerte(float startpos);
+        Bird(SDL_Renderer* renderer, RegularTexture *texture);
+
     protected:
     private:
 };

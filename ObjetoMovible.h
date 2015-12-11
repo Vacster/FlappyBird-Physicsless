@@ -3,25 +3,25 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
 #include <iostream>
 
 #include "RegularTexture.h"
 
 #define xvel 10
 
-
 class ObjetoMovible
 {
     public:
+        SDL_Rect rect, rect2;
         SDL_Renderer* renderer;
         SDL_Texture *texture, *texture2;
-        SDL_Rect rect, rect2;
+
         std::string tipo;
-        virtual void logica()=0;
+
         ObjetoMovible() {}
+        virtual void logica()=0;
         virtual ~ObjetoMovible() {}
-    protected:
-    private:
 };
 
 #endif // OBJETOMOVIBLE_H
