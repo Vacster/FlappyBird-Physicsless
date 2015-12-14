@@ -110,7 +110,7 @@ int main( int argc, char* args[] )
     fireworks = new Fireworks(renderer, counter);
 
     TTF_Init();
-    font = TTF_OpenFont("text.ttf", 200);
+    font = TTF_OpenFont("assets/text.ttf", 200);
     colors[0] = {255, 255, 255};
     colors[1] = {169, 231, 227};
     colors[2] = {0, 0, 0};
@@ -268,7 +268,7 @@ void updatescores()
             break;
         }
     }
-    std::ofstream out("highscores");
+    std::ofstream out("assets/highscores");
     out<<scores[0];
     out<<" ";
     out<<scores[1];
@@ -279,7 +279,7 @@ void updatescores()
 
 void loadscores()
 {
-    std::ifstream in("highscores");
+    std::ifstream in("assets/highscores");
     int score;
     if(in.fail()){
         scores[0] = 15;

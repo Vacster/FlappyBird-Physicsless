@@ -26,16 +26,16 @@ RegularTexture::RegularTexture(SDL_Renderer *renderer, int skin)
     switch(skin)
     {
         case BLUE:
-            location = "images/blue/";
+            location = "assets/blue/";
         break;
         case SPACE:
-            location = "images/space/";
+            location = "assets/space/";
         break;
         case REGULAR:
-            location = "images/regular/";
+            location = "assets/regular/";
         break;
         case BLACKNWHITE:
-            location = "images/blacknwhite/";
+            location = "assets/blacknwhite/";
         break;
     }
     for(int x = 0; x<9; x++)

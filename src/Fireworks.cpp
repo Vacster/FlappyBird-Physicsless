@@ -32,7 +32,7 @@ Fireworks::Fireworks(SDL_Renderer *renderer, int *puntos)
 
     for(int x = 0; x < 9; x++)
     {
-        *texture[x] = IMG_LoadTexture(renderer, ("images/fireworks/"+patch::to_string(x)+".png").c_str());
+        *texture[x] = IMG_LoadTexture(renderer, ("assets/fireworks/"+patch::to_string(x)+".png").c_str());
     }
     frames = 0;
 }
