@@ -13,7 +13,7 @@ Tubo::Tubo(SDL_Renderer *renderer, RegularTexture *texture,int *counter)
     this->texture2 = texture->pipe2;
     SDL_QueryTexture(this->texture, NULL, NULL, &w, &h);
 
-    gap = 710;
+    gap = 690;
     rect = {-100, 0, w, h};
     rect2 = {-100, 0, w, h};
 

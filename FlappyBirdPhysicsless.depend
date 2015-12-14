@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1449847599 source:/home/kamil/Desktop/FlappyBirdPhysicsless/main.cpp
+1449855280 source:/home/kamil/Desktop/FlappyBirdPhysicsless/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_image.h>
@@ -28,7 +28,7 @@
 	<SDL2/SDL_image.h>
 	"RegularTexture.h"
 
-1449712151 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.cpp
+1449855344 source:/home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.cpp
 	"Tubo.h"
 
 1449372113 /home/kamil/Desktop/FlappyBirdPhysicsless/Tubo.h
