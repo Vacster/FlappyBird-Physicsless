@@ -1,4 +1,4 @@
-#include "RegularTexture.h"
+#include "../include/RegularTexture.h"
 
 RegularTexture::RegularTexture(SDL_Renderer *renderer, int skin)
 {

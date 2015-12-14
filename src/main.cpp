@@ -10,15 +10,15 @@
 #include <fstream>
 #include <iostream>
 
-#include "Bird.h"
-#include "Tubo.h"
-#include "ground.h"
-#include "Flower.h"
-#include "Fireworks.h"
-#include "Background.h"
-#include "ObjetoMovible.h"
-#include "CustomTexture.h"
-#include "RegularTexture.h"
+#include "../include/Bird.h"
+#include "../include/Tubo.h"
+#include "../include/ground.h"
+#include "../include/Flower.h"
+#include "../include/Fireworks.h"
+#include "../include/Background.h"
+#include "../include/ObjetoMovible.h"
+#include "../include/CustomTexture.h"
+#include "../include/RegularTexture.h"
 
 #define TICK_INTERVAL 17
 #define FALLING_CONSTANT -11.5
@@ -78,9 +78,9 @@ int main( int argc, char* args[] )
     if( Mix_OpenAudio( 22050, AUDIO_S16SYS/*MIX_DEFAULT_FORMAT*/, 2, 1024 ) == -1 )
         return 15;
 
-    death_sound = Mix_LoadWAV("death_sound.wav");
-    space_click_sound = Mix_LoadWAV("space_sound.wav");
-    Mix_PlayChannel(1, Mix_LoadWAV("background_music.ogg"), -1);
+    death_sound = Mix_LoadWAV("sound/death_sound.wav");
+    space_click_sound = Mix_LoadWAV("sound/space_sound.wav");
+    Mix_PlayChannel(1, Mix_LoadWAV("sound/background_music.ogg"), -1);
 
     if((window = SDL_CreateWindow("Flappy Pollito v1.0", 100, 100,
     1360, 720, SDL_WINDOW_RESIZABLE | SDL_RENDERER_PRESENTVSYNC)) == NULL)

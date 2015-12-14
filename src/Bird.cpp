@@ -1,4 +1,4 @@
-#include "Bird.h"
+#include "../include/Bird.h"
 
 
 Bird::Bird(SDL_Renderer* renderer, RegularTexture *texture)

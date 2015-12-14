@@ -1,4 +1,4 @@
-#include "ground.h"
+#include "../include/ground.h"
 
 ground::ground(SDL_Renderer *renderer, RegularTexture *texture)
 {

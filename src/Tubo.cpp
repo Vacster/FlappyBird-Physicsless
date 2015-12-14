@@ -1,4 +1,4 @@
-#include "Tubo.h"
+#include "../include/Tubo.h"
 
 int min = 100, max = 450;
 
