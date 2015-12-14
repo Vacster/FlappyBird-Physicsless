@@ -5,3 +5,4 @@
 ![Chicken](https://github.com/Vacster/FlappyBird-Physicsless/blob/master/assets/regular/pollo.png)
 ![Chicken](https://github.com/Vacster/FlappyBird-Physicsless/blob/master/assets/blue/pollo.png)
 ![Chicken](https://github.com/Vacster/FlappyBird-Physicsless/blob/master/assets/blacknwhite/pollo.png)
+![Chicken](https://github.com/Vacster/FlappyBird-Physicsless/blob/master/assets/space/pollo.png)
