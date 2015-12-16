@@ -7,8 +7,7 @@
 ![Chicken](https://github.com/Vacster/FlappyBird-Physicsless/blob/master/assets/blacknwhite/pollo.png)
 ![Chicken](https://github.com/Vacster/FlappyBird-Physicsless/blob/master/assets/space/pollo.png)
 
-
-
+<br></br>
 <h2>Instructions</h2>
 <p><em>Simply tap the Spacebar to jump and that's it</em></p>
 
