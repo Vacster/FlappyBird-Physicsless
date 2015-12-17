@@ -13,4 +13,4 @@
 
 <br></br>
 <h2>Flappy Pollito Video Demo</h2>
-[![Flappy Pollito Video](http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](http://www.youtube.com/watch?v=dQw4w9WgXcQ)
+[![Flappy Pollito Video](http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://github.com/Vacster/FlappyBird-Physicsless/blob/master/assets/video1.mkv)
