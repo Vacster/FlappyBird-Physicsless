@@ -8,10 +8,10 @@ Flower::Flower(SDL_Renderer *renderer)
 
     frames = 0, texture_num = 0;
 
-    textures[0] = IMG_LoadTexture(renderer, "../images/flower_straight.png");
-    textures[1] = IMG_LoadTexture(renderer, "../images/flower_left.png");
-    textures[2] = IMG_LoadTexture(renderer, "../images/flower_straight.png");
-    textures[3] = IMG_LoadTexture(renderer, "../images/flower_right.png");
+    textures[0] = IMG_LoadTexture(renderer, "assets/flower_straight.png");
+    textures[1] = IMG_LoadTexture(renderer, "assets/flower_left.png");
+    textures[2] = IMG_LoadTexture(renderer, "assets/flower_straight.png");
+    textures[3] = IMG_LoadTexture(renderer, "assets/flower_right.png");
 
     texture = textures[texture_num];
     texture2 = textures[texture_num];

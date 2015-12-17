@@ -145,7 +145,7 @@ int main( int argc, char* args[] )
                 {
                     if((collision((*e)->rect, pollito->point, pollito->radius)
                     || collision((*e)->rect2, pollito->point, pollito->radius))
-                    && (*e)->tipo!="Background")
+                    && (*e)->tipo!="Background" && (*e)->tipo!="Flower")
                     {
                         now = SDL_GetTicks();
                         while(SDL_GetTicks() < now+50)
